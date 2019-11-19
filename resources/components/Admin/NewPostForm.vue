@@ -19,9 +19,15 @@
 
 <script>
 export default {
+  props: {
+    postEdit: {
+      type: Object,
+      required: false,
+    }
+  },
   data() {
     return {
-      post: {
+      post: this.postEdit ? { ...this.postEdit } :  {
         title: '',
         description: '',
         img: '',

@@ -1,5 +1,6 @@
 <template>
     <PostsList
+    :admin="true"
     :posts="posts"
     />
 </template>
