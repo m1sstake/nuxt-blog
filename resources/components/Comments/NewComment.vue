@@ -45,7 +45,6 @@ export default {
   methods: {
     onSubmit() {
       this.message = 'Submitted'
-      console.log(this.comment)
       this.comment.name = ''
       this.comment.text = ''
     }

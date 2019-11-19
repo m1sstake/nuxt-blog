@@ -7,7 +7,7 @@
 
       <form @submit.prevent="onSubmit" class="contact-form">
 
-        <AppInput v-model="user.name">Name::</AppInput>
+        <AppInput v-model="user.name">Name:</AppInput>
 
         <AppInput type="email" v-model="user.email">Email:</AppInput>
 
@@ -48,9 +48,8 @@ export default {
   methods: {
     onSubmit() {
       this.message = 'Submitted!'
-      console.log(this.user)
-      this.user.name = '',
-      this.user.email = '',
+      this.user.name = ''
+      this.user.email = ''
       this.user.text = ''
     }
   }
