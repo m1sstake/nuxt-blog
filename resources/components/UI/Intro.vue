@@ -1,7 +1,8 @@
 <template>
   <section class="intro">
     <div class="container">
-      <h1>{{ title }}</h1>
+      <h2>{{ title }}</h2>
+      <slot/>
     </div>
   </section>
 </template>
@@ -24,7 +25,7 @@ export default {
   color: #ffffff;
   background-color: #4b40e3;
 }
-h1 {
+h2 {
   font-size: 26px;
 }
 </style>

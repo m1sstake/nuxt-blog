@@ -1,8 +1,8 @@
 <template>
 <div class="wrapper-content wrapper-content--fixed">
   <div class="container">
-    <intro title="My posts:"/>
-    <postsList
+    <Intro title="My posts:"/>
+    <PostsList
     :posts="posts"
     />
   </div>
@@ -10,14 +10,8 @@
 </template>
 
 <script>
-import intro from '@/components/UI/Intro.vue'
-import postsList from '@/components/Blog/PostsList.vue'
-
 export default {
-  components: {
-    intro,
-    postsList,
-  },
+
   data () {
     return {
       posts: [
