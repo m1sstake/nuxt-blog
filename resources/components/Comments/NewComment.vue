@@ -2,11 +2,10 @@
   <section class="new-comment">
     <div class="container">
       <form @submit.prevent="onSubmit" class="comment-form">
-        <label>Name:</label>
-        <input v-model="comment.name" type="text">
-        <label>Text:</label>
-        <textarea v-model="comment.text"></textarea>
+        
+        <AppInput type="text" v-model="comment.name">Name:</AppInput>
 
+        <AppTextArea v-model="comment.text">Text:</AppTextArea>
 
         <div class="controls">
           <AppButton>Submit</AppButton>
@@ -18,9 +17,14 @@
 
 <script>
 import AppButton from '@/components/UI/Controls/Button.vue'
+import AppTextArea from '@/components/UI/Controls/TextArea.vue'
+import AppInput from '@/components/UI/Controls/Input.vue'
+
 export default {
   components: {
     AppButton,
+    AppTextArea,
+    AppInput
   },
   data () {
     return {
