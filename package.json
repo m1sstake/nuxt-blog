@@ -1,7 +1,7 @@
 {
   "name": "blog",
   "version": "1.0.0",
-  "description": "My geometric Nuxt.js project",
+  "description": "My Nuxt.js project",
   "author": "m1sstake",
   "private": true,
   "scripts": {
@@ -22,6 +22,7 @@
     "@adonisjs/session": "^1.0.19",
     "@adonisjs/shield": "^1.0.4",
     "ant-design-vue": "^1.1.10",
+    "axios": "^0.19.0",
     "cross-env": "^5.2.0",
     "node-sass": "^4.13.0",
     "nuxt": "^2.0.0",

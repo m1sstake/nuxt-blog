@@ -20,6 +20,5 @@ export default {
   components: {
     Header
   },
-  middleware: ['auth']
 }
 </script>
