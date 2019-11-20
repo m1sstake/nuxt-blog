@@ -22,8 +22,8 @@
 <script>
 
 
-
 export default {
+
   data () {
     return {
       message: null,
@@ -35,9 +35,19 @@ export default {
   },
   methods: {
     onSubmit() {
-      this.message = 'Submitted'
-      this.comment.name = ''
-      this.comment.text = ''
+      console.log(this.$router.params)
+      this.$store.dispatch('addComment', {
+        // postId: this.$router.params.id,
+        publish: false,
+        ...this.comment
+      })
+        .then(() => {
+          this.message = 'Submitted'
+          this.comment.name = ''
+          this.comment.text = ''
+        })
+        .catch(e => console.log(e))
+
     }
   }
 }
