@@ -25,8 +25,15 @@ export default {
   },
   methods: {
     onSubmit () {
-      this.user.email = ''
-      this.user.password = ''
+      this.$store.dispatch('authUser', this.user)
+        .then((res) => {
+          this.$router.push('/admin/')
+        })
+        .catch(e => {
+          this.user.email = ""
+          this.user.password = ""
+          console.log(e)
+        })
     }
   }
 }

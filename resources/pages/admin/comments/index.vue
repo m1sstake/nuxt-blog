@@ -40,7 +40,6 @@ export default {
           commentsArray.push({id: key, ...comment})
         })
         this.comments = commentsArray
-        // let commentsRes = Object.values(res.data)
       })
   },
   methods: {

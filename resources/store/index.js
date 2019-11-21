@@ -2,7 +2,7 @@ import axios from 'axios'
 
 export const state = () => ({
   postsLoaded: [],
-  commentsLoaded: [],
+  token: null,
 })
 
 export const mutations = {
@@ -19,7 +19,14 @@ export const mutations = {
   addComment (state, comment) {
     console.log(comment)
     state.commentsLoaded.push(comment)
+  },
+  setToken (state, token) {
+    state.token = token
+  },
+  destroyToken (state) {
+    state.token = null
   }
+  
 }
 
 export const actions = {
@@ -50,15 +57,31 @@ export const actions = {
   },
   addComment ({ commit }, comment) {
     return axios.post(`https://blog-nuxt-6cb97.firebaseio.com/comments.json`, comment)
-      .then(res => {
-        commit('addComment', { ...comment, id: res.data.name })
-      })
+      .catch(e => console.log(e))
   },
+  authUser ({ commit }, authData) {
+    const key = 'AIzaSyBbA5PnSOwPLFfUhEqRy4JI3bFHHeW-ReA'
+    return axios.post(`https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${key}`, { 
+      email: authData.email,
+      password: authData.password,
+      returnSecureToken: true,
+    })
+      .then(res => {
+        commit('setToken', res.data.idToken)
+      })
+      .catch(e => console.log(e))
+  },
+  logoutUser ({ commit }) {
+    commit('destroyToken')
+  }
   
 }
 
 export const getters = {
   getPostsLoaded (state) {
     return state.postsLoaded
+  },
+  checkAuthUser (state) {
+    return state.token != null
   }
 }
