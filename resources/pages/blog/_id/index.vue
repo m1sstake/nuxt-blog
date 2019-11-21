@@ -7,11 +7,13 @@
     :comments="comments"
     />
     <newComment
+    :postId="$route.params.id"
     />
   </div>
 </template>
 
 <script>
+import axios from 'axios'
 import post from '@/components/Blog/Post.vue'
 import newComment from '@/components/Comments/NewComment.vue'
 import comments from '@/components/Comments/Comments.vue'
@@ -21,22 +23,22 @@ export default {
     newComment,
     comments
   },
-  data () {
+  async asyncData (contex) {
+    let [post, comments] = await Promise.all([
+      axios.get(`https://blog-nuxt-6cb97.firebaseio.com/posts/${contex.params.id}.json`),
+      axios.get(`https://blog-nuxt-6cb97.firebaseio.com/comments.json`)
+    ])
+    let postComments = Object
+                              .values(comments.data)
+                                                  .filter(comment => (comment.postId === contex.params.id) && comment.publish);
+    console.log(postComments)
+
     return {
-      post: {
-        id: 1,
-        title: '1 post',
-        description: 'Lorem ipsum dolor sit amet.',
-        img: 'https://i.pinimg.com/originals/34/4c/35/344c353218d0e6447f7358f52f1d75e7.jpg',
-        content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
-        },
-      comments: [
-        { name: 'Alex', text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer lacinia.' },
-        { name: 'Evgenii', text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer lacinia.'}
-        ],
-      }
+      post: post.data,
+      comments: postComments
     }
   }
+}
 </script>
 
 <style lang="scss">

@@ -23,7 +23,12 @@
 
 
 export default {
-
+  props: {
+    postId: {
+      type: String,
+      required: true
+    }
+  },
   data () {
     return {
       message: null,
@@ -37,7 +42,7 @@ export default {
     onSubmit() {
       console.log(this.$router.params)
       this.$store.dispatch('addComment', {
-        // postId: this.$router.params.id,
+        postId: this.postId,
         publish: false,
         ...this.comment
       })
