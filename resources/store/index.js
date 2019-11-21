@@ -53,8 +53,8 @@ export const actions = {
       .then(res => {
         commit('addComment', { ...comment, id: res.data.name })
       })
-      
-  }
+  },
+  
 }
 
 export const getters = {

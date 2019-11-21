@@ -40,7 +40,6 @@ export default {
   },
   methods: {
     onSubmit() {
-      console.log(this.$router.params)
       this.$store.dispatch('addComment', {
         postId: this.postId,
         publish: false,

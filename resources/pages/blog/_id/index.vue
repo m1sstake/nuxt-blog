@@ -31,7 +31,6 @@ export default {
     let postComments = Object
                               .values(comments.data)
                                                   .filter(comment => (comment.postId === contex.params.id) && comment.publish);
-    console.log(postComments)
 
     return {
       post: post.data,

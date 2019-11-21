@@ -22,7 +22,6 @@ export default {
   },
   methods: {
     onSubmit (post) {
-      console.log('Post Editing!')
       this.$store.dispatch('editPost', post)
       .then(res => {
         this.$router.push('/admin')
