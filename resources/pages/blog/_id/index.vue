@@ -23,6 +23,23 @@ export default {
     newComment,
     comments
   },
+  head () {
+  let title = this.post.title,
+  description = this.post.description,
+  type = 'article',
+  img = this.post.img
+  return {
+    title: title,
+    meta: [
+      { hid: 'description', name: 'description', content: description },
+      { hid: 'og:description', name: 'description', content: description },
+      { hid: 'og:title', name: 'og:title', content: title },
+      { hid: 'og:type', name: 'og:type', content: type },
+      { hid: 'og:img', name: 'og:img', content: img },
+
+      ]
+  }
+},
   async asyncData (contex) {
     let [post, comments] = await Promise.all([
       axios.get(`https://blog-nuxt-6cb97.firebaseio.com/posts/${contex.params.id}.json`),
@@ -30,7 +47,7 @@ export default {
     ])
     let postComments = Object
                               .values(comments.data)
-                                                  .filter(comment => (comment.postId === contex.params.id) && comment.publish);
+                                                    .filter(comment => (comment.postId === contex.params.id) && comment.publish);
 
     return {
       post: post.data,

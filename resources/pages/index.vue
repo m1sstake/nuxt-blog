@@ -21,6 +21,22 @@ export default {
     promo,
     contacts
   },
+  head () {
+    let title = 'My SSR Blog!',
+        description = 'My SSR Blog! With Nuxt.js',
+        type = 'site'
+        
+    return {
+      title: title,
+      meta: [
+        { hid: 'description', name: 'description', content: description },
+        { hid: 'og:description', name: 'description', content: description },
+        { hid: 'og:title', name: 'og:title', content: title },
+        { hid: 'og:type', name: 'og:type', content: type },
+
+      ]
+    }
+  },
   computed: {
     posts () {
       return this.$store.getters.getPostsLoaded
