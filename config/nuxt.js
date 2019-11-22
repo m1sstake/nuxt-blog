@@ -50,6 +50,10 @@ module.exports = {
   ** Build configuration
   */
   build: {
+    vendor: [
+      'vue',
+      'axios'
+    ],
     /*
     ** You can extend webpack config here
     */

@@ -25,7 +25,7 @@ export default {
     let title = 'My SSR Blog!',
         description = 'My SSR Blog! With Nuxt.js',
         type = 'site'
-        
+
     return {
       title: title,
       meta: [
