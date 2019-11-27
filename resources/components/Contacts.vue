@@ -42,6 +42,7 @@ export default {
       this.user.email = ''
       this.user.text = ''
     }
+  
   }
 }
 </script>

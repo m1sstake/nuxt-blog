@@ -22,7 +22,7 @@ export default {
   components: {
     Header
   },
-  middleware: ['auth'],
+  // middleware: ['auth'],
   methods: {
     logoutUser () {
       this.$store.dispatch('logoutUser')
