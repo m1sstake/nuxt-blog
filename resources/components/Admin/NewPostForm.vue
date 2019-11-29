@@ -45,15 +45,14 @@ export default {
         title: '',
         description: '',
         img: '',
-        content: '# Test',
+        content: '',
       }
     }
   },
   watch: {
     markdown: function (val) {
       if (!val && this.contentMarkdown) {
-        console.log(val)
-        this.contentHtml = marked(this.contentMarkdown, { headerIds : false}) 
+        this.contentHtml = this.compilledMarkdown(this.contentMarkdown)  
       }
       else if (val && this.contentHtml) {
         this.contentMarkdown =  htmlConverter(this.contentHtml)
@@ -71,10 +70,15 @@ export default {
       this.markdown ? this.contentMarkdown = e : this.contentHtml = e 
     }, 
     onSubmit() {
+      this.markdown ? this.post.content = compiledMarkdown (this.contentMarkdown) :
+      this.post.content = this.contentHtml
       this.$emit('submit', this.post)
     },
     cancel () {
       this.$router.push('/admin/')
+    },
+    compilledMarkdown (data) {
+      return marked (data, { headerIds : false})
     }
   }
 }
